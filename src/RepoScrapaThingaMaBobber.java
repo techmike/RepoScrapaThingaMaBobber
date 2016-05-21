@@ -24,10 +24,10 @@ public class RepoScrapaThingaMaBobber {
             Document doc = Jsoup.connect(url).userAgent("Chrome").get();
             System.out.println(doc.title() +"\n");
 
-            Elements repoPackages = doc.select("a[href] > dt");
+
+            Elements repoPackages = doc.select("dt");
             for (Element repoPackage : repoPackages) {
-                System.out.print("\nPackage : " + repoPackage.attr("href") + " | ");
-                System.out.println(repoPackage.attr("dl.dd"));
+                System.out.println("Package : " + repoPackage.select("a[href]").text() + repoPackage.select("dt").text());
             }
         } catch (IOException ex) {
             ex.printStackTrace();
